@@ -6,15 +6,14 @@
 
 ```sql
 
-CREATE DATABASE vendas CHARACTER SET utf8mb4;
-
+c
 ```
 <!-- ______________________________________________________´__ -->
 ### Criar tabela fabricantes
 
 ```sql
 
-CREATE TABLE fabricantes(
+CREATE TABLE filmes(
     id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
     nome VARCHAR(45) NOT NULL
 )
