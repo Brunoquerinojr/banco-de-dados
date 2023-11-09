@@ -208,6 +208,10 @@ INSERT INTO alunos (nome, data_de_nascimento,primeira_nota, segunda_nota, curso_
 
 -- 5ª Digitação (SQL para criar a consulta acima)
 
+SELECT nome,data_de_nascimento 
+FROM alunos 
+WHERE data_de_nascimento < '2009-01-01'>;
+
 ```
 ![Relatório 1](resultados_alunos/relatorio1.jpg)
 
@@ -215,7 +219,7 @@ INSERT INTO alunos (nome, data_de_nascimento,primeira_nota, segunda_nota, curso_
 ### 2) Faça uma consulta que calcule a média das notas de cada aluno e as mostre com duas casas decimais.
 ```sql
 
-SELECT nome, primeira_nota, segunda_nota, ROUND(AVG((primeira_nota + segunda_nota) / 2), 2) AS "Média das notas"  from alunos GROUP BY nome;
+SELECT nome, primeira_nota, segunda_nota, ROUND(AVG((primeira_nota + segunda_nota) / 2), 5) AS "Média das notas"  from alunos GROUP BY nome;
 
 
 ```
@@ -226,6 +230,9 @@ SELECT nome, primeira_nota, segunda_nota, ROUND(AVG((primeira_nota + segunda_not
 ```sql
 
 -- 7ª Digitação (SQL para criar a consulta acima)
+
+SELECT titulo, carga_horaria, carga_horaria * 0.25 AS "Limite de faltas" from cursos;
+
 
 ```
 ![Relatório 3](resultados_alunos/relatorio3.jpg)
@@ -245,6 +252,10 @@ SELECT nome, area_de_atuacao FROM professores WHERE area_de_atuacao LIKE "%desen
 ```sql
 
 -- 9ª Digitação (SQL para criar a consulta acima)
+SELECT COUNT(area_de_atuacao) AS "Quantidade de professor 1" FROM professores WHERE area_de_atuacao LIKE "%desenvolvimento%";
+SELECT COUNT(area_de_atuacao) AS "Quantidade de professor 2" FROM professores WHERE area_de_atuacao = "desenvolvimento";
+SELECT COUNT(area_de_atuacao) AS "Quantidade de professor 3" FROM professores WHERE area_de_atuacao LIKE "%desenvol%";
+SELECT COUNT(area_de_atuacao) AS "Quantidade de professor 4" FROM professores WHERE area_de_atuacao = "desenvol";
 
 ```
 ![Relatório 5](resultados_alunos/relatorio5.jpg)
@@ -264,6 +275,8 @@ SELECT alunos.nome, cursos.titulo, cursos.carga_horaria FROM alunos INNER JOIN c
 ```sql
 
 -- 11ª Digitação (SQL para criar a consulta acima)
+SELECT professores.nome, professores.area_de_atuacao FROM professores INNER JOIN cursos ON professores.curso_id = cursos.id;
+
 
 ```
 ![Relatório 7](resultados_alunos/relatorio7.jpg)
@@ -290,6 +303,9 @@ SELECT alunos.nome, cursos.titulo, professores.nome AS "Nome professor" FROM alu
 ```sql
 
 -- 13ª Digitação (SQL para criar a consulta acima)
+SELECT alunos.nome, cursos.titulo, professores.nome AS "Nome professor" FROM alunos LEFT JOIN cursos ON alunos.curso_id = cursos.id LEFT JOIN professores ON professores.curso_id = cursos.id;
+
+
 
 ```
 ![Relatório 9](resultados_alunos/relatorio9.jpg)
