@@ -303,7 +303,14 @@ SELECT alunos.nome, cursos.titulo, professores.nome AS "Nome professor" FROM alu
 ```sql
 
 -- 13ª Digitação (SQL para criar a consulta acima)
-SELECT alunos.nome, cursos.titulo, professores.nome AS "Nome professor" FROM alunos LEFT JOIN cursos ON alunos.curso_id = cursos.id LEFT JOIN professores ON professores.curso_id = cursos.id;
+
+SELECT cursos.titulo AS "Matéria", 
+COUNT(alunos.curso_id) AS "QTD Alunos"
+FROM alunos
+INNER JOIN cursos
+ON alunos.curso_id = cursos.id
+GROUP BY Matéria
+ORDER BY COUNT(alunos.curso_id) DESC;
 
 
 
@@ -314,7 +321,12 @@ SELECT alunos.nome, cursos.titulo, professores.nome AS "Nome professor" FROM alu
 ### 10) Faça uma consulta que mostre o nome dos alunos, suas notas, médias, e o título dos cursos que fazem. Devem ser considerados somente os alunos de Front-End e Back-End. Mostre classificados pelo nome do aluno.
 ```sql
 
-SELECT alunos.nome, primeira_nota, segunda_nota, ROUND(AVG((primeira_nota + segunda_nota) / 2), 2) AS "Média das notas", cursos.titulo AS titulo from alunos INNER JOIN cursos ON alunos.curso_id = cursos.id WHERE curso_id IN(1,2) GROUP BY nome ORDER BY titulo;
+SELECT alunos.nome, primeira_nota, segunda_nota, ROUND(AVG((primeira_nota + segunda_nota) / 2), 2) AS "Média das notas", cursos.titulo AS titulo 
+from alunos 
+INNER JOIN cursos ON alunos.curso_id = cursos.id 
+WHERE curso_id IN(1,2) 
+GROUP BY nome 
+ORDER BY titulo;
 
 ```
 ![Relatório 10](resultados_alunos/relatorio10.jpg)
@@ -322,7 +334,9 @@ SELECT alunos.nome, primeira_nota, segunda_nota, ROUND(AVG((primeira_nota + segu
 <!-- _________________________ -->
 ### 11) Faça uma consulta que altere o nome do curso de Figma para Adobe XD e sua carga horária de 10 para 15.
 ```sql
-
+UPDATE cursos
+SET titulo = 'AdobeXD'
+WHERE id = 4;
 -- 15ª Digitação (SQL para criar a consulta acima)
 
 ```
@@ -343,7 +357,9 @@ DELETE FROM alunos WHERE nome = 'Mário Calore' AND curso_id = 3;
 <!-- _________________________ -->
 ### 13) Faça uma consulta que mostre a lista de alunos atualizada e o título dos cursos que fazem, classificados pelo nome do aluno.
 ```sql
-
+select alunos.nome, cursos.titulo AS titulo from alunos INNER JOIN cursos
+ON alunos.curso_id = cursos.id
+GROUP BY nome ORDER BY nome;
 -- 17ª Digitação (SQL para criar a consulta acima)
 
 ```
